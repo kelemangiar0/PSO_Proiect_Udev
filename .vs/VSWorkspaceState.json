@@ -2,6 +2,11 @@
   "ExpandedNodes": [
     ""
   ],
+<<<<<<< HEAD
+  "SelectedNode": "\\caca.c",
+  "PreviewInSolutionExplorer": true
+=======
   "SelectedNode": "\\test.txt",
   "PreviewInSolutionExplorer": false
+>>>>>>> c07d24f56062799a25e91eb05ab8c137dee02e08
 }
