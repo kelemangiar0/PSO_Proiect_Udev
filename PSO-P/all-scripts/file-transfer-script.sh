@@ -1,11 +1,11 @@
 #!/usr/bin/bash
-if [ $SUDO_USER ]; then user=$SUDO_USER; else user=`whoami`; fi
 
-log_file="/home/$user/PSO-P/log.txt"
-server_ip="192.168.173.216"
-us="kele"
-backup_folder="/home/$user/PSO-P/backup-folder"
+log_file="/home/$1/PSO-P/log.txt"
+recieverIP="192.168.173.10"
+recieverUSER="student"
+toTransmitFolder="/home/$1/PSO-P/backup-folder"
+toRecieveFolder="/home/$recieverUSER/testssh"
 
-echo "TRANSMITTING DATA OVER $server_ip...." >> "$log_file"
-scp -r "$backup_folder" "$us@$server_ip:/home/kele/ssh"
+echo "TRANSMITTING DATA OVER $recieverIP...." >> "$log_file"
+scp -r "$toTransmitFolder" "$recieverUSER@$recieverIP:$toRecieveFolder"
 echo "DONE!" >> "$log_file"

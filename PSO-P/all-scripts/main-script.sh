@@ -1,14 +1,13 @@
 #!/usr/bin/bash
-if [ $SUDO_USER ]; then user=$SUDO_USER; else user=`whoami`; fi
 
-log_file="/home/$user/PSO-P/log.txt"
+log_file="/home/$1/PSO-P/log.txt"
 
-echo "STARTING ALL SCRIPTS..." >> "$log_file"
-ping-script.sh
-backup-script.sh
-#file-transfer-script.sh
-cleanup-script.sh
+echo "STARTING ALL SCRIPTS..." >> $log_file
+ping-script.sh $1
+backup-script.sh $1
+file-transfer-script.sh $1
+cleanup-script.sh $1
 
-echo "##################" >> "$log_file"
-echo "####UDEV ENDED####" >> "$log_file"
-echo "##################" >> "$log_file"
+echo "##################" >> $log_file
+echo "####UDEV ENDED####" >> $log_file
+echo "##################" >> $log_file

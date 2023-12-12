@@ -11,7 +11,7 @@ sudo chown $user "$log_file"
 
 #regula udev
 sudo touch "$rules_path"
-sudo echo "SUBSYSTEM==\"block\", ACTION==\"add\", RUN+=\"/usr/local/bin/trigger.sh\"" | sudo tee /etc/udev/rules.d/80-local.rules > /dev/null
+sudo echo "SUBSYSTEM==\"block\", ACTION==\"add\", RUN+=\"/usr/local/bin/trigger.sh $user\"" | sudo tee /etc/udev/rules.d/80-local.rules > /dev/null
 sudo udevadm control --reload
 
 #serviciu systemd
@@ -22,7 +22,7 @@ Description=Service called when the HD with idVendor=0480 and idProduct=a00d is 
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/gnome-terminal -- sudo /usr/local/bin/main-script.sh
+ExecStart=/usr/bin/gnome-terminal -- sudo /usr/local/bin/main-script.sh $user
 
 [Install]
 WantedBy=default.target" | sudo tee /home/$user/.config/systemd/user/main.service > /dev/null
