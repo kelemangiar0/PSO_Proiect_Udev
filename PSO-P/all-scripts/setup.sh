@@ -1,14 +1,16 @@
 #!/usr/bin/bash
 if [ $SUDO_USER ]; then user=$SUDO_USER; else user=`whoami`; fi
 
+log_file="/home/$user/PSO-P/log.txt"
+rules_path="/etc/udev/rules.d/80-local.rules"
 
 sudo cp * /usr/local/bin
-sudo rm /home/$user/PSO-P/log.txt
-sudo touch /home/$user/PSO-P/log.txt
-sudo chown $user /home/$user/PSO-P/log.txt
+sudo rm "$log_file"
+sudo touch "$log_file"
+sudo chown $user "$log_file"
 
 #regula udev
-sudo touch /etc/udev/rules.d/80-local.rules
+sudo touch "$rules_path"
 sudo echo "SUBSYSTEM==\"block\", ACTION==\"add\", RUN+=\"/usr/local/bin/trigger.sh\"" | sudo tee /etc/udev/rules.d/80-local.rules > /dev/null
 sudo udevadm control --reload
 

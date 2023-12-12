@@ -1,0 +1,22 @@
+student
+STARTING ALL SCRIPTS...
+PINGING...\n
+--- 192.168.173.216 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3011ms
+rtt min/avg/max/mdev = 6.936/7.860/8.980/0.740 ms
+PINGING ENDED.\n
+STARTING BACKUP...
+--- 192.168.173.216 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3008ms
+rtt min/avg/max/mdev = 5.265/9.655/14.858/3.499 ms
+PINGING ENDED.\n
+STARTING BACKUP...
+BACKUP ENDED SUCCESFULLY!
+TRANSMITTING DATA OVER 192.168.173.216....
+BACKUP ENDED SUCCESFULLY!
+TRANSMITTING DATA OVER 192.168.173.216....
+DONE!
+CLEANED /usr/local/bin
+##################
+####UDEV ENDED####
+##################
