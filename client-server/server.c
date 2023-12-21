@@ -88,17 +88,22 @@ void recieve_info(int sockfd,char* destination_path,char* initial_path)
 
 
 
+             //aici trebuie primit continutul fisierului completeFilePathToServer
+             //trebuie deschis ca fisier binar
+             //la fel si la client
 
-            FILE *fp;
-            fp = fopen(completeFilePathToServer, "w");
-            if(fp==NULL)
-            {
-               perror("[-]Error in creating file.");
-               exit(1);
-            }
-            printf("[FILE CREATED]%s\n",completeFilePathToServer);
 
-            //aici trebuie primit continutul fisierului completeFilePathToServer
+
+            //FILE *fp;
+            //fp = fopen(completeFilePathToServer, "w");
+            //if(fp==NULL)
+            //{
+            //   perror("[-]Error in creating file.");
+            //   exit(1);
+            //}
+            //printf("[FILE CREATED]%s\n",completeFilePathToServer);
+
+            //recieve_file(socketfd,completeFilePathToServer)
 
            
             //test
@@ -140,7 +145,7 @@ int main()
     int port = 8084;
     int socket=setup_connection(ip,port);
 
-    char* server_folder="/home/kele/server-folder";
+    char* server_folder="/home/kele/server-folder"; //folderul in care clientul trimite fisierele catre server
     
 
 

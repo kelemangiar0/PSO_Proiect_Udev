@@ -110,7 +110,8 @@ void list_directory(const char *base_path,int sockfd) {
                     bzero(data, SIZE);
 
                     //aici trebuie trimis continutul fisierului completeFilePathFromClient
-
+                    //cand trimiti trimiti ca fisier binar
+                    //send_file(socketfd, completeFilePathFromClient)
 
                     //test
 
@@ -124,10 +125,10 @@ void list_directory(const char *base_path,int sockfd) {
 }
 int main()
 {
-    char *ip = "10.0.2.15";
+    char *ip = "10.0.2.15"; //aceeasi adr ip ca la server
     int port = 8084;
     int socket=setup_connection(ip,port);
-    char *source_folder="/home/kele/PSO-P/backup-folder";
+    char *source_folder="/home/kele/PSO-P/backup-folder"; //aici folderul pe care il vrei sa il trimiti catre server (de ka client)
 
     char data[SIZE] = {0};
     strcpy(data,source_folder);
