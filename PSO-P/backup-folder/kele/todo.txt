@@ -1,0 +1,7 @@
+*pso tema 2
+*psop
+*limbaje tema compilator
+*modelare
+
+
+*bd

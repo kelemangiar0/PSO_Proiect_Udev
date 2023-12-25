@@ -9,7 +9,7 @@
 
 #define SIZE 1024
 
-char currentServerPath[1000];
+char currentServerPath[2048];
 
 void removeSubstring(char *s, const char *toremove) {
     char *p = strstr(s, toremove);
@@ -66,18 +66,19 @@ void recieve_info(int sockfd, char *destination_path, char *initial_path) {
 
             char completeFilePathToServer[2048];
             snprintf(completeFilePathToServer, sizeof(completeFilePathToServer), "%s/%s", currentServerPath, buffer);
-            
+        
             receive_file(sockfd, completeFilePathToServer);
         }
 
         if (strncmp(buffer, "[DICT]", 6) == 0) {
             removeSubstring(buffer, "[DICT]");
             removeSubstring(buffer, initial_path);
-
+            
             char new_path[2048];
             snprintf(new_path, sizeof(new_path), "%s%s", destination_path, buffer);
             mkdir(new_path, 0777);
 
+            
             strcpy(currentServerPath, new_path);
             printf("[FOLDER CREATED]%s\n", currentServerPath);
         }
@@ -154,6 +155,7 @@ int main() {
     }
     printf("[CLIENT'S FOLDER TO COPY] %s\n", client_folder_to_copy);
 
+    
     recieve_info(socket, server_folder, client_folder_to_copy);
 
     printf("[+]Data written in the text file ");

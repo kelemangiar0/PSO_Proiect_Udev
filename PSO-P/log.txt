@@ -4,12 +4,14 @@
 STARTING ALL SCRIPTS...
 ===ping-script.sh===
 Interface found: enp0s3. Starting pinging on this interface...
-192.168.1.5: Ping success
 192.168.1.1: Ping success
-192.168.1.3: Ping success
+192.168.1.6: Ping success
+192.168.1.10: Ping success
+192.168.1.4: Ping success
 192.168.1.8: Ping success
+192.168.1.3: Ping success
 ======
-SUMMARY: 4 IP ADDRESSES IN NETWORK.
+SUMMARY: 6 IP ADDRESSES IN NETWORK.
 ======
 ===backup-script.sh===
 STARTING BACKUP...
@@ -21,6 +23,7 @@ BACKUP ENDED SUCCESFULLY!
 [FILE SENT]/home/kele/PSO-P/backup-folder/kele/3_gratuitos_arp_simple.pcapng
 [FILE SENT]/home/kele/PSO-P/backup-folder/kele/todo.txt
 [FILE SENT]/home/kele/PSO-P/backup-folder/kele/proxy_arp.pcapng
+[FILE SENT]/home/kele/PSO-P/backup-folder/salut/dd
 [FILE SENT]/home/kele/PSO-P/backup-folder/System Volume Information/WPSettings.dat
 [FILE SENT]/home/kele/PSO-P/backup-folder/System Volume Information/IndexerVolumeGuid
 [+] File data sent successfully. 
