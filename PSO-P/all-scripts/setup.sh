@@ -11,7 +11,7 @@ sudo chown $user "$log_file"
 
 #regula udev
 sudo touch "$rules_path"
-sudo echo "SUBSYSTEM==\"block\", ACTION==\"add\", RUN+=\"/usr/local/bin/trigger.sh $user\"" | sudo tee /etc/udev/rules.d/80-local.rules > /dev/null
+sudo echo "SUBSYSTEM==\"block\", ACTION==\"add\", KERNEL==\"sd*1\", RUN+=\"/usr/local/bin/trigger.sh $user\"" | sudo tee /etc/udev/rules.d/80-local.rules > /dev/null
 sudo udevadm control --reload
 
 #serviciu systemd
