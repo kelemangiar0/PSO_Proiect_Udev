@@ -1,7 +1,6 @@
 #!/bin/bash
 
-log_file="/home/$1/PSO-P/log.txt"
-
+# Get the default network interface
 interface=$(ip route | grep '^default' | awk '{print $5}' | head -n 1)
 
 if [ -z "$interface" ]; then
@@ -9,5 +8,4 @@ if [ -z "$interface" ]; then
     exit 1
 fi
 
-echo "Interface found: $interface. Starting pinging on this interface..." >> $log_file
-echo $interface | xargs network_ping $1
+echo $interface | xargs ./network_ping kele
