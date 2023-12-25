@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <pthread.h>
+#include <arpa/inet.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #define SIZE 1024
 
@@ -115,34 +116,25 @@ void handleClient(int socket, const char* baseDir) {
     recieve_info(socket, server_folder, client_folder_to_copy);
 }
 
-void *handle_client_thread(void *socket) {
-    int client_socket = *((int *)socket);
-    free(socket);
-
-    handleClient(client_socket, "/home/kele/server-folder");
-
-    close(client_socket);
-    return NULL;
-}
 
 int main() {
     char ip[] = "192.168.1.9";
     int port = 8084;
     int e;
 
-    int server_fd, new_socket;
+    int sockfd, new_sock;
     struct sockaddr_in server_addr, new_addr;
     socklen_t addr_size;
 
-    server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd < 0) {
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0) {
         perror("[-]Error in socket");
         exit(1);
     }
-    printf("[+]Server socket created.\n");
+    printf("[+]Server socket created. \n");
 
     int optval = 1;
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) < 0) {
+    if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) < 0) {
         perror("[-]Error setting SO_REUSEADDR");
         exit(1);
     }
@@ -151,39 +143,32 @@ int main() {
     server_addr.sin_port = port;
     server_addr.sin_addr.s_addr = inet_addr(ip);
 
-    e = bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr));
+    e = bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
     if (e < 0) {
         perror("[-]Error in Binding");
         exit(1);
     }
     printf("[+]Binding Successful.\n");
 
-    e = listen(server_fd, 10);
-    if (e < 0) {
-        perror("[-]Error in listening");
+    e = listen(sockfd, 10);
+    if (e == 0) {
+        printf("[+]Listening...\n");
+    } else {
+        perror("[-]Error in Binding");
         exit(1);
     }
-    printf("[+]Listening...\n");
+    addr_size = sizeof(new_addr);
+    new_sock = accept(sockfd, (struct sockaddr *)&new_addr, &addr_size);
 
-    while (1) {
-        addr_size = sizeof(new_addr);
-        new_socket = accept(server_fd, (struct sockaddr *)&new_addr, &addr_size);
-        if (new_socket < 0) {
-            perror("[-]Error in accepting connection");
-            continue;
-        }
 
-        pthread_t thread_id;
-        int *client_sock = malloc(sizeof(int));
-        *client_sock = new_socket;
+    handleClient(new_sock, "/home/kele/server-folder"); //i guess i need to put it in a thread
+   
 
-        if (pthread_create(&thread_id, NULL, handle_client_thread, (void *)client_sock) != 0) {
-            perror("pthread_create failed");
-            close(new_socket);
-            free(client_sock);
-        }
-    }
+    
+    
 
-    close(server_fd);
+    printf("[+]Data written in the text file ");
+    close(socket);
+
     return 0;
 }
