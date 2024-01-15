@@ -7,4 +7,4 @@ to make it run for you:
  - make sure to "make" in the location above
  - copy client executable in ./all-scripts/
  - make sure to "chmod +x *" in ./all-scripts and ./all-programs/server-client
-  
+ - cd ~/PSO-P/all-scripts/setup.sh
