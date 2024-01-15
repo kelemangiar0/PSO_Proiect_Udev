@@ -10,5 +10,5 @@ to make it run for you:
 
 And it`s done
 
-*run the server before the client, and make sure they are in the same network
-*you need the PSO-P folder în your home directory
+ * run the server before the client, and make sure they are in the same network
+ * you need the PSO-P folder in your home directory
