@@ -8,6 +8,3 @@ to make it run for you:
  - copy client executable in ./all-scripts/
  - make sure to "chmod +x *" in ./all-scripts and ./all-programs/server-client
   
-
-
-*todo automatically do all these steps in ./setup-script.sh
